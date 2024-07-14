@@ -4,8 +4,7 @@ import json
 
 # Initialize Kafka consumer
 consumer = KafkaConsumer(
-    'temp',
-    'humidity',
+    'sensor_data',
     bootstrap_servers='YOUR_KAFKA_SERVER:9092',
     auto_offset_reset='earliest',
     enable_auto_commit=True,
@@ -20,10 +19,11 @@ csv_file = 'sensor_data.csv'
 with open(csv_file, 'w', newline='') as file:
     writer = csv.writer(file)
     # Write the header
-    writer.writerow(['timestamp', 'sensor1', 'sensor2'])
+    writer.writerow(['timestamp', 'temperature', 'humidity'])
 
     # Consume messages from Kafka
     for message in consumer:
         data = message.value
         # Write the data to CSV
-        writer.writerow([data['timestamp'], data['sensor1'], data['sensor2']])
+        writer.writerow(
+            [data['timestamp'], data['temperature'], data['humidity']])
