@@ -48,7 +48,7 @@ pip install kafka-python pandas
 pip install streamlit pandas
 ```
 
-## File Locations
+## Running the Project
 
 1. Put the producer python file on the Raspberry and customize it according to the sensors you are using.
 2. The consumer python file will be ran on the system.
